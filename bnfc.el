@@ -39,12 +39,27 @@
     "Integer"
     "String"))
 
+(defconst bnfc-label
+  (rx symbol-start
+      (group upper (0+ (any letter digit "_")))
+      symbol-end
+      (0+ space)
+      "."))
+
+(defconst bnfc-production-variable
+  ;; This regexp overlaps with bnfc-label, but that's not a problem
+  ;; since this is used after it in the font-lock-keywords.
+  (rx symbol-start
+      (group upper (0+ (any letter digit "_")))
+      symbol-end))
+
 (defvar bnfc-font-lock-keywords
   (append
    `(
      (,(regexp-opt bnfc-keywords 'symbols) . font-lock-keyword-face)
      (,(regexp-opt bnfc-builtins 'symbols) . font-lock-builtin-face)
-     )))
+     (,bnfc-label 1 font-lock-variable-name-face)
+     (,bnfc-production-variable 1 font-lock-type-face))))
 
 
 (define-derived-mode bnfc-mode prog-mode "BNFC"
