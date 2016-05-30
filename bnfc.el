@@ -1,3 +1,5 @@
+(add-to-list 'auto-mode-alist '("\\.cf\\'" . bnfc-mode))
+
 (defconst bnfc-mode-syntax-table
   (let ((table (make-syntax-table)))
     (modify-syntax-entry ?\" "\"" table)
