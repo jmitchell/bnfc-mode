@@ -66,8 +66,7 @@
 
 (define-derived-mode bnfc-mode prog-mode "BNFC"
   :syntax-table bnfc-mode-syntax-table
-  (setq-local font-lock-defaults '(bnfc-font-lock-keywords
-                                   nil nil nil nil))
+  (setq-local font-lock-defaults '(bnfc-font-lock-keywords))
   (font-lock-fontify-buffer))
 
 (provide 'bnfc-mode)
