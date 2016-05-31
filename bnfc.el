@@ -1,3 +1,20 @@
+;;; bnfc.el --- Define context-free grammars for the BNFC tool
+;;
+;; Copyright (C) 2016  Jacob Mitchell <jmitchell@member.fsf.org>
+;;
+;; Author: Jacob Mitchell <jmitchell@member.fsf.org>
+;; URL: https://github.com/jmitchell/bnfc-mode
+;; Keywords: languages, tools
+;; Version: 0.1
+;;
+;;; Commentary:
+;;
+;; This package simplifies editing BNFC files.  BNFC is a tool for
+;; defining context-free grammars as labelled-BNFs.  To use it, load
+;; this file and type "M-x bnfc-mode".
+;;
+;;; Code:
+
 (add-to-list 'auto-mode-alist '("\\.cf\\'" . bnfc-mode))
 
 (defconst bnfc-mode-syntax-table
@@ -69,4 +86,4 @@
   (setq-local font-lock-defaults '(bnfc-font-lock-keywords))
   (font-lock-fontify-buffer))
 
-(provide 'bnfc-mode)
+(provide 'bnfc)
