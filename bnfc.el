@@ -1,18 +1,18 @@
 ;;; bnfc.el --- Define context-free grammars for the BNFC tool
-;;
+
 ;; Copyright (C) 2016  Jacob Mitchell <jmitchell@member.fsf.org>
-;;
+
 ;; Author: Jacob Mitchell <jmitchell@member.fsf.org>
 ;; URL: https://github.com/jmitchell/bnfc-mode
 ;; Keywords: languages, tools
 ;; Version: 0.1
-;;
+
 ;;; Commentary:
-;;
+
 ;; This package simplifies editing BNFC files.  BNFC is a tool for
 ;; defining context-free grammars as labelled-BNFs.  To use it, load
 ;; this file and type "M-x bnfc-mode".
-;;
+
 ;;; Code:
 
 (add-to-list 'auto-mode-alist '("\\.cf\\'" . bnfc-mode))
@@ -25,10 +25,6 @@
     (modify-syntax-entry ?- "_ 123" table)
     (modify-syntax-entry ?\n ">" table)
     table))
-
-;; TODO: investigate "define", "delimiters", "views" keywords in the
-;; latest source BNF.cf, but not documented at
-;; https://bnfc.readthedocs.io/en/latest.
 
 (defconst bnfc-keywords
   '("char"
@@ -66,16 +62,16 @@
       "."))
 
 (defconst bnfc-production-variable
-  ;; This regexp overlaps with bnfc-label, but that's not a problem
-  ;; since this is used after it in the font-lock-keywords.
+  ;; Regexp overlaps with BNFC-LABEL, but ordering of the
+  ;; FONT-LOCK-DEFAULTS resolves the ambiguity. Strings matching both
+  ;; regexps are treated as labels.
   (rx symbol-start
       (group upper (0+ (any letter digit "_")))
       symbol-end))
 
 (defvar bnfc-font-lock-keywords
   (append
-   `(
-     (,(regexp-opt bnfc-keywords 'symbols) . font-lock-keyword-face)
+   `((,(regexp-opt bnfc-keywords 'symbols) . font-lock-keyword-face)
      (,(regexp-opt bnfc-builtins 'symbols) . font-lock-builtin-face)
      (,bnfc-label 1 font-lock-variable-name-face)
      (,bnfc-production-variable 1 font-lock-type-face))))
@@ -87,3 +83,4 @@
   (font-lock-fontify-buffer))
 
 (provide 'bnfc)
+;;; bnfc.el ends here
