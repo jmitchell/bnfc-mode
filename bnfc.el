@@ -5,7 +5,8 @@
 ;; Author: Jacob Mitchell <jmitchell@member.fsf.org>
 ;; URL: https://github.com/jmitchell/bnfc-mode
 ;; Keywords: languages, tools
-;; Version: 0.1
+;; Version: 0.2
+;; Package-Requires: ((emacs "24.3"))
 
 ;;; Commentary:
 
@@ -15,6 +16,7 @@
 
 ;;; Code:
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cf\\'" . bnfc-mode))
 
 (defconst bnfc-mode-syntax-table
@@ -76,11 +78,10 @@
      (,bnfc-label 1 font-lock-variable-name-face)
      (,bnfc-production-variable 1 font-lock-type-face))))
 
-
+;;;###autoload
 (define-derived-mode bnfc-mode prog-mode "BNFC"
   :syntax-table bnfc-mode-syntax-table
-  (setq-local font-lock-defaults '(bnfc-font-lock-keywords))
-  (font-lock-fontify-buffer))
+  (setq-local font-lock-defaults '(bnfc-font-lock-keywords)))
 
 (provide 'bnfc)
 ;;; bnfc.el ends here
