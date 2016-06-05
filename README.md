@@ -19,7 +19,7 @@ Here's a screenshot of part of that grammar in bnfc-mode.
 
 * Syntax highlighting via `font-lock-mode`
 * Automatically loads on files with `*.cf` extension
-
+* Comment/uncomment lines using `M-;`
 
 ## Installation
 

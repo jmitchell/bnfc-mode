@@ -5,7 +5,7 @@
 ;; Author: Jacob Mitchell <jmitchell@member.fsf.org>
 ;; URL: https://github.com/jmitchell/bnfc-mode
 ;; Keywords: languages, tools
-;; Version: 0.3
+;; Version: 0.4
 ;; Package-Requires: ((emacs "24.3"))
 
 ;; This file is not part of GNU Emacs.
@@ -96,7 +96,9 @@
 ;;;###autoload
 (define-derived-mode bnfc-mode prog-mode "BNFC"
   :syntax-table bnfc-mode-syntax-table
-  (setq-local font-lock-defaults '(bnfc-font-lock-keywords)))
+  (setq-local font-lock-defaults '(bnfc-font-lock-keywords))
+  (setq-local comment-start "--")
+  (setq-local comment-end ""))
 
 (provide 'bnfc)
 ;;; bnfc.el ends here
